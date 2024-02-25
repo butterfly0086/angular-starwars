@@ -1,0 +1,8 @@
+<div *ngIf="errorMessage" class="sw-error mt-5">
+    <p class="uk-text-warning message alert-danger amber rounded p-4">
+        <span class="text-dark h6">{{ errorMessage }}</span><br>
+        <button class="mt-3" color="warn" (click)="refresh()" mat-raised-button>
+            Refresh page
+        </button>
+    </p>
+</div>

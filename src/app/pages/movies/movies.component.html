@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="row g-4">
+        <div class="d-flex align-items-center justify-content-between">
+            <mat-form-field class="searh-bar">
+                <mat-label>Search for movies</mat-label>
+                <input matInput type="text" [(ngModel)]="searchValue" (input)="onSearchChange()" />
+                <button matSuffix mat-icon-button *ngIf="searchValue" aria-label="Clear" (click)="removeSearchValue()">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+
+            <mat-paginator
+                #paginator
+                hidePageSize
+                [length]="movies.length"
+                pageIndex="0"
+                pageSize="10"
+                aria-label="Select page"
+            />
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <h2 *ngIf="movies.length === 0" class="text-danger text-center">There are no movies.</h2>
+        
+        <ng-container *ngFor="let movie of movies">
+            <app-movie-card
+                [@fadeInOutTranslate]
+                [title]="movie.title"
+                [releaseDate]="movie.release_date"
+                [producer]="movie.producer"
+                [movieId]="movie.episode_id"
+                class="col-sm-6 col-md-4 col-lg-3"
+            />
+        </ng-container>
+    </div>
+</div>
+
+<app-loading [isLoading]="loading"></app-loading>
+<app-notification [errorMessage]="errorMessage"></app-notification>

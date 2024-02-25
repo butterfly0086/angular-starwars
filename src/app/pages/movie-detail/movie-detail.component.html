@@ -1,0 +1,65 @@
+<mat-card class="container">
+    <mat-card-header>
+        <h4 [@fadeInOutTranslate] *ngIf="movie">
+            {{ movie.title }}
+        </h4>
+
+    </mat-card-header>
+
+    <button mat-button class="align-self-start m-3" (click)="navigateToBack()">
+        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="reply"></mat-icon>
+        Go back
+    </button>
+
+    <mat-card-content>
+        <mat-list>
+            <mat-list-item class="h-auto" [@fadeInOutTranslate] *ngIf="movie">
+                <span matListItemTitle>Opening Crawl</span>
+                <img *ngIf="movie?.episode_id" [src]="'../../../assets/images/cover/' + movie.episode_id + '.png'" class="img-fluid rounded mb-3" alt="Movie Banner">
+                
+                <p matListItemLine style="white-space: normal;">
+                    {{ movie.opening_crawl }}
+                </p>
+            </mat-list-item>
+
+            <mat-divider [@fadeInOutTranslate] *ngIf="movie"></mat-divider>
+
+            <mat-list-item class="h-auto" [@fadeInOutTranslate] *ngIf="movie">
+                <span matListItemTitle>Producer</span>
+                <p matListItemLine style="white-space: normal;">
+                    {{ movie.producer }}
+                </p>
+            </mat-list-item>
+
+            <mat-divider [@fadeInOutTranslate] *ngIf="movie"></mat-divider>
+
+            <mat-list-item class="h-auto" [@fadeInOutTranslate] *ngIf="movie">
+                <span matListItemTitle>Director</span>
+                <p matListItemLine style="white-space: normal;">
+                    {{ movie.director }}
+                </p>
+            </mat-list-item>
+
+            <mat-divider [@fadeInOutTranslate] *ngIf="movie"></mat-divider>
+
+            <mat-list-item class="h-auto" [@fadeInOutTranslate] *ngIf="movie">
+                <span matListItemTitle>Release Date</span>
+                <p matListItemLine style="white-space: normal;">
+                    {{ movie.release_date }}
+                </p>
+            </mat-list-item>
+
+            <mat-divider [@fadeInOutTranslate] *ngIf="movie"></mat-divider>
+
+            <mat-list-item style="height: auto;" [@fadeInOutTranslate] *ngIf="movie">
+                <span matListItemTitle>Characters</span>
+
+                <mat-chip-set [@slideUpDown]>
+                    <mat-chip *ngFor="let characeter of movie.characters" (click)="navigateToCharacter(characeter.url)">{{ characeter.name }}</mat-chip>
+                </mat-chip-set>
+            </mat-list-item>
+        </mat-list>
+    </mat-card-content>
+</mat-card>
+
+<app-loading [isLoading]="loading"></app-loading>

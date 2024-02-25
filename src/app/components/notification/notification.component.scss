@@ -1,0 +1,13 @@
+.sw-error {
+    z-index: 9999;
+    height: 100%;
+    width: 100%;
+    .message {
+        position: relative;
+        text-align: center;
+    }
+}
+
+app-sw-characters {
+    width: 75%;
+}

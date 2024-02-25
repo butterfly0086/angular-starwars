@@ -1,0 +1,62 @@
+<mat-card class="container">
+    <mat-card-header>
+        <h5 [@fadeInOutTranslate] *ngIf="character">
+            {{ character.name }}
+        </h5>
+    </mat-card-header>
+
+    <button mat-button class="align-self-start m-3" (click)="navigateToBack()">
+        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="reply"></mat-icon>
+        Go back
+    </button>
+
+    <mat-card-content>
+        <mat-list>
+            <mat-list-item class="h-auto" [@fadeInOutTranslate] *ngIf="character">
+                <span matListItemTitle>Gender</span>
+                <p matListItemLine style="white-space: normal;">
+                    {{ character.gender }}
+                </p>
+            </mat-list-item>
+
+            <mat-divider [@fadeInOutTranslate] *ngIf="character"></mat-divider>
+
+            <mat-list-item class="h-auto" [@fadeInOutTranslate] *ngIf="character">
+                <span matListItemTitle>Gender Abrv</span>
+                <p matListItemLine style="white-space: normal;">
+                    {{ character.gender_abrv }}
+                </p>
+            </mat-list-item>
+
+            <mat-divider [@fadeInOutTranslate] *ngIf="character"></mat-divider>
+
+            <mat-list-item class="h-auto" [@fadeInOutTranslate] *ngIf="character">
+                <span matListItemTitle>Heght</span>
+                <p matListItemLine style="white-space: normal;">
+                    {{ character.height }}
+                </p>
+            </mat-list-item>
+
+            <mat-divider [@fadeInOutTranslate] *ngIf="character"></mat-divider>
+
+            <mat-list-item class="h-auto" [@fadeInOutTranslate] *ngIf="character">
+                <span matListItemTitle>Birth Year</span>
+                <p matListItemLine style="white-space: normal;">
+                    {{ character.birth_year }}
+                </p>
+            </mat-list-item>
+
+            <mat-divider [@fadeInOutTranslate] *ngIf="character"></mat-divider>
+
+            <mat-list-item style="height: auto;" [@fadeInOutTranslate] *ngIf="character">
+                <span matListItemTitle>Films</span>
+
+                <mat-chip-set>
+                    <mat-chip *ngFor="let film of character.films" (click)="navigateToMovieDetail(film.episode_id)">{{ film.title }}</mat-chip>
+                </mat-chip-set>
+            </mat-list-item>
+        </mat-list>
+    </mat-card-content>
+</mat-card>
+
+<app-loading [isLoading]="loading"></app-loading>
